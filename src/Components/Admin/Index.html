@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin  - HRDC</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container py-4">
+  <div class="text-center mb-4">
+    <h2 class="font-weight-bold text-primary"> Admin Dashboard</h2>
+    <p class="text-muted">Manage patients, staff, and financial records</p>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="stat-card bg-primary">
+        <i class="fas fa-procedures"></i>
+        <h5>Total Patients</h5>
+        <h4 id="totalPatients">0</h4>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card bg-success">
+        <i class="fas fa-user-md"></i>
+        <h5>Staff Members</h5>
+        <h4 id="totalStaff">0</h4>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card bg-info">
+        <i class="fas fa-money-bill-wave"></i>
+        <h5>Net Balance</h5>
+        <h4 id="netBalance">RS0.00</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" id="adminTabs">
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#patients"><i class="fas fa-procedures mr-2"></i>Patients</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#staff"><i class="fas fa-user-tie mr-2"></i>Staff</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#income"><i class="fas fa-money-bill-alt mr-2"></i>Finance</a></li>
+  </ul>
+
+  <div class="tab-content bg-white p-4 border-left border-right border-bottom rounded-bottom">
+    <!-- Patients Tab -->
+    <div id="patients" class="tab-pane active">
+      <div class="form-section">
+        <h5><i class="fas fa-plus-circle text-primary mr-2"></i>Add New Patient</h5>
+        <form id="patientForm">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>Full Name</label>
+              <input class="form-control" placeholder="Patient's full name" id="patientName" required>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Date of Birth</label>
+              <input class="form-control" type="date" id="dob" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>Admission Date</label>
+              <input class="form-control" type="date" id="admitDate" required>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Father's Name</label>
+              <input class="form-control" placeholder="Father's name" id="fatherName" required>
+            </div>
+          </div>
+          
+          <!-- Location Hierarchy -->
+          <div class="row location-select">
+            <div class="col-md-4 form-group">
+              <label>Province</label>
+              <select class="form-control" id="province" required>
+                <option value="">Select Province</option>
+                <option value="Province 1">Koshi Province</option>
+                <option value="Province 2">Madhesh Province </option>
+                <option value="Province 3">Bagmati Province </option>
+                <option value="Province 4">Gandaki Province </option>
+                <option value="Province 5">Lumbani Province </option>
+                <option value="Province 6">Karnali Province </option>
+                <option value="Province 7"> Sudurpashchim Province </option>
+              </select>
+            </div>
+            <div class="col-md-4 form-group">
+              <label>District</label>
+              <select class="form-control" id="district" required disabled>
+                <option value="">Select District</option>
+              </select>
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Local Government</label>
+              <select class="form-control" id="localGovernment" required disabled>
+                <option value="">Select Local Government</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>Phone Number</label>
+              <input class="form-control" placeholder="Phone number" id="patientPhone" required>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Patient Problem/Cause</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="patientCauseInput" placeholder="Enter problem/cause">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="addCauseBtn">Add</button>
+                </div>
+              </div>
+              <div id="causeList" class="mt-2">
+                <!-- Causes will be added here -->
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save mr-2"></i>Add Patient
+          </button>
+        </form>
+      </div>
+
+      <div class="table-responsive">
+        <h5><i class="fas fa-list text-primary mr-2"></i>Patient Records</h5>
+        <table class="table table-striped table-hover" id="patientsTable">
+          <thead class="thead-light">
+            <tr>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>Admission</th>
+              <th>Location</th>
+              <th>Phone</th>
+              <th>Problems/Causes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patientsList">
+            <!-- Patient data will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Staff Tab -->
+    <div id="staff" class="tab-pane fade">
+      <!-- Staff form remains the same as before -->
+      <div class="form-section">
+        <h5><i class="fas fa-user-plus text-success mr-2"></i>Add New Staff</h5>
+        <form id="staffForm">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>Full Name</label>
+              <input class="form-control" placeholder="Staff member's name" id="staffName" required>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Email</label>
+              <input class="form-control" type="email" placeholder="Email address" id="staffGmail" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>Position</label>
+              <input class="form-control" placeholder="Job position" id="staffPost" required>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Phone Number</label>
+              <input class="form-control" placeholder="Phone number" id="staffPhone" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <textarea class="form-control" placeholder="Full address" id="staffAddress" rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">
+            <i class="fas fa-save mr-2"></i>Add Staff
+          </button>
+        </form>
+      </div>
+
+      <div class="table-responsive">
+        <h5><i class="fas fa-users text-success mr-2"></i>Staff Members</h5>
+        <table class="table table-striped table-hover" id="staffTable">
+          <thead class="thead-light">
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Position</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="staffList">
+            <!-- Staff data will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Income/Expense Tab -->
+    <div id="income" class="tab-pane fade">
+      <!-- Finance form remains the same as before -->
+      <div class="form-section">
+        <h5><i class="fas fa-file-invoice-dollar text-info mr-2"></i>Add Financial Record</h5>
+        <form id="financeForm">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>Income Amount (RS)</label>
+              <input class="form-control" placeholder="0.00" type="number" step="0.01" id="incomeAmt">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Expense Amount (RS)</label>
+              <input class="form-control" placeholder="0.00" type="number" step="0.01" id="expenseAmt">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input class="form-control" placeholder="Transaction description" id="financeDesc">
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input class="form-control" type="date" id="financeDate" required>
+          </div>
+          <button type="submit" class="btn btn-info">
+            <i class="fas fa-save mr-2"></i>Add Record
+          </button>
+          <button type="button" class="btn btn-warning ml-2" onclick="downloadExcel()">
+            <i class="fas fa-file-excel mr-2"></i>Export to Excel
+          </button>
+        </form>
+      </div>
+
+      <div class="table-responsive">
+        <h5><i class="fas fa-chart-line text-info mr-2"></i>Financial Records</h5>
+        <table class="table table-striped table-hover" id="financeTable">
+          <thead class="thead-light">
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Income (RS)</th>
+              <th>Expense (RS)</th>
+              <th>Balance (RS)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="financeList">
+            <!-- Financial data will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+<script src="script.js"></script>
+<script src="data.js"></script>
+</body>
+</html>

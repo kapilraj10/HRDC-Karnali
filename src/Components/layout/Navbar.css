@@ -1,0 +1,168 @@
+:root {
+  --nav-impact-color: #06b6d4;
+  --nav-gallery-color: #f43f5e;
+  --nav-campaign-color: #84cc16;
+  --nav-center-color: #0ea5e9;
+  --nav-notice-color: #eab308;
+  --login-btn-color: #4f46e5;
+  --signup-btn-color: #ec4899;
+}
+
+.nav-link.home::after {
+  background: linear-gradient(90deg, var(--nav-home-color), #fb7185);
+}
+
+.nav-link.about::after {
+  background: linear-gradient(90deg, var(--nav-about-color), #c084fc);
+}
+
+.nav-link.impact::after {
+  background: linear-gradient(90deg, var(--nav-impact-color), #67e8f9);
+}
+
+.nav-link.gallery::after {
+  background: linear-gradient(90deg, var(--nav-gallery-color), #fb7185);
+}
+
+.nav-link.campaign::after {
+  background: linear-gradient(90deg, var(--nav-campaign-color), #bef264);
+}
+
+.nav-link.center::after {
+  background: linear-gradient(90deg, var(--nav-center-color), #7dd3fc);
+}
+
+.nav-link.notice::after {
+  background: linear-gradient(90deg, var(--nav-notice-color), #fde047);
+}
+
+.nav-link.home:hover {
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.nav-link.about:hover {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.nav-link.impact:hover {
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.nav-link.gallery:hover {
+  background: rgba(244, 63, 94, 0.1);
+}
+
+.nav-link.campaign:hover {
+  background: rgba(132, 204, 22, 0.1);
+}
+
+.nav-link.center:hover {
+  background: rgba(14, 165, 233, 0.1);
+}
+
+.nav-link.notice:hover {
+  background: rgba(234, 179, 8, 0.1);
+}
+
+.nav-link.home.active {
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.2);
+}
+
+.nav-link.about.active {
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.nav-link.impact.active {
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+}
+
+.nav-link.gallery.active {
+  box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.2);
+}
+
+.nav-link.campaign.active {
+  box-shadow: 0 0 0 2px rgba(132, 204, 22, 0.2);
+}
+
+.nav-link.center.active {
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+.nav-link.notice.active {
+  box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2);
+}
+.login-btn,
+.signup-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.login-btn {
+  background: var(--login-btn-color);
+  color: white;
+}
+
+.signup-btn {
+  background: var(--signup-btn-color);
+  color: white;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .auth-buttons {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .login-btn,
+  .signup-btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    flex: 1;
+    max-width: 140px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-buttons {
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .login-btn,
+  .signup-btn {
+    padding: 10px 14px; 
+    font-size: 0.85rem;
+    max-width: 100%;
+    width: 100%; 
+  }
+}
+
+.login-btn:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.signup-btn:hover {
+  background: #db2777;
+  transform: translateY(-1px);
+}
+
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+.signup-btn:active {
+  transform: translateY(0);
+}
