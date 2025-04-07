@@ -6,9 +6,9 @@ import hospitalLogo from "../../assets/images/hospital-logo.png";
 import "./Navbar.css";
 
 const Navbar = () => {
-    const location = useLocation(); 
+    const location = useLocation();
 
-  
+
     const getActiveClass = (path) => {
         return location.pathname === path ? "active" : "";
     };
@@ -46,9 +46,7 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/about" className={`nav-link ${getActiveClass("/about")}`}>
-                                    About Us
-                                </Link>
+                                <Link to="/about" className="nav-link">About Us</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/impact" className={`nav-link ${getActiveClass("/impact")}`}>
@@ -79,10 +77,7 @@ const Navbar = () => {
                             >
                                 Login
                             </Link>
-                            <Link 
-                                className={`btn btn-warning ${getActiveClass("/Signup")}`}
-                                 to="/Signup"
-                            >
+                            <Link className={`btn btn-warning ${getActiveClass("/signup")}`} to="/signup">
                                 Sign Up
                             </Link>
                         </div>

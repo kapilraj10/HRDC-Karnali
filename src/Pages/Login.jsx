@@ -1,127 +1,105 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
-import './Login.css';
+import React, { useState } from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
+import { useAuth } from "../context/AuthContext";
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/Login.css';
 
-const Login = () => { // Component name should be capitalized
-    const [formData, setFormData] = React.useState({
+const Login = () => {
+    const [formData, setFormData] = useState({
         email: '',
         password: '',
-        rememberMe: false,
     });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-    };
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            setError('');
+            setLoading(true);
+            await login(formData.email, formData.password);
+            navigate('/');
+        } catch (err) {
+            setError('Failed to log in. Please check your credentials.');
+            console.error(err);
+        }
+        setLoading(false);
+    };
+
     return (
-        <Container className="my-5">
-            <Row className="justify-content-center">
-                <Col xs={12} md={8} lg={6}>
-                    <div className='p-4 border rounded shadow'>
-                        <h2 className='text-center mb-4'>Welcome Back</h2>
-                        <Form onSubmit={handleSubmit}>
-                            {/* Email Input */}
-                            <Form.Group className="mb-3" controlId="formEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    name="email"
-                                    required
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    aria-label="Email address"
-                                />
-                                <Form.Text className='text-muted'>
-                                    We'll never share your email with anyone else.
-                                </Form.Text>
-                            </Form.Group>
-
-                            {/* Password Input */}
-                            <Form.Group className="mb-4" controlId="formPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    placeholder="Password"
-                                    required
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    aria-label="Password"
-                                />
-                            </Form.Group>
-
-                            {/* Remember Me & Forgot Password */}
-                            <Row className='mb-4'>
-                                <Col xs={12} md={6}>
-                                    <Form.Check
-                                        type="checkbox"
-                                        id="rememberMe"
-                                        label="Remember Me"
-                                        name="rememberMe"
-                                        checked={formData.rememberMe}
-                                        onChange={handleChange}
-                                    />
-                                </Col>
-                                <Col xs={12} md={6} className="text-md-end mt-2 mt-md-0">
-                                    <a href="#!" className="text-decoration-none">
-                                        Forgot password?
-                                    </a>
-                                </Col>
-                            </Row>
-
-                            {/* Submit Button */}
-                            <div className="d-grid mb-4">
-                                <Button variant="primary" type="submit" size="lg">
-                                    Sign in
-                                </Button>
-                            </div>
-
-                            {/* Social Login */}
-                            <div className="text-center">
-                                <p className="mb-3">Or continue with</p>
-                                <div className="d-flex justify-content-center gap-3">
-                                    <Button
-                                        variant="outline-primary"
-                                        className="rounded-circle"
-                                        style={{ width: '3rem', height: '3rem' }}
-                                    >
-                                        <FaFacebook size={20} />
-                                    </Button>
-                                    <Button
-                                        variant="outline-danger"
-                                        className="rounded-circle"
-                                        style={{ width: '3rem', height: '3rem' }}
-                                    >
-                                        <FaGoogle size={20} />
-                                    </Button>
-                                </div>
-                            </div>
-
-                            {/* Register Link */}
-                            <div className="text-center mt-4">
-                                <p>
-                                    Not a member?{' '}
-                                    <Link to="/signup" className="text-decoration-none">
-                                        Register now
-                                    </Link>
-                                </p>
-                            </div>
-                        </Form>
+        <Container className="login-container">
+            <div className="login-card">
+                <div className="login-header">
+                    <h1 className="welcome-title">Welcome to HRDC Karnali</h1>
+                    <p className="welcome-subtitle">Please sign in to continue</p>
+                </div>
+                
+                {error && <div className="alert alert-danger">{error}</div>}
+                
+                <Form onSubmit={handleSubmit} className="login-form">
+                    <Form.Group className="mb-4">
+                        <Form.Label className="form-label">Email Address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="form-input"
+                            placeholder="Enter your email"
+                        />
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-4">
+                        <Form.Label className="form-label">Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            required
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="form-input"
+                            placeholder="Enter your password"
+                        />
+                    </Form.Group>
+                    
+                    <div className="d-grid mb-3">
+                        <Button 
+                            type="submit" 
+                            variant="primary" 
+                            className="login-button"
+                            disabled={loading}
+                        >
+                            {loading ? 'Signing In...' : 'Sign In'}
+                        </Button>
                     </div>
-                </Col>
-            </Row>
+                    
+                    <div className="text-center mb-3">
+                        <Link to="/forgot-password" className="forgot-password">
+                            Forgot Password?
+                        </Link>
+                    </div>
+                    
+                    <div className="login-footer">
+                        <p className="register-text">
+                            Don't have an account?{' '}
+                            <Link to="/signup" className="register-link">Create Account</Link>
+                        </p>
+                    </div>
+                </Form>
+            </div>
         </Container>
     );
 };
 
-export default Login; 
+export default Login;

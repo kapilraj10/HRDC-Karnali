@@ -1,9 +1,11 @@
-import React from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import './Singup.css';
+import React, { useState } from "react";
+import { Container, Form, Button, Alert } from "react-bootstrap";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
+import "../styles/Sinup.css"; // Make sure to create this CSS file
 
-const signup = () => {
-    const [formData, setFormData] = React.useState({
+const Signup = () => {
+    const [formData, setFormData] = useState({
         fullName: '',
         email: '',
         phone: '',
@@ -11,102 +13,135 @@ const signup = () => {
         confirmPassword: '',
     });
 
-    const handleSubmit = (e) => {
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const { signup } = useAuth();
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (formData.password !== formData.confirmPassword) {
-            alert("Passwords do not match!");
-            return;
+            return setError("Passwords do not match");
         }
 
-        console.log("Form submitted", formData);
-        // Add your backend API logic here
+        try {
+            setError("");
+            setLoading(true);
+            await signup(formData);
+            navigate("/");
+        } catch (err) {
+            setError(err.message || "Failed to create an account");
+            console.error(err);
+        }
+        setLoading(false);
     };
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
     return (
-        <Container className="my-5">
-            <Row className="justify-content-center">
-                <Col xs={12} md={8} lg={6}>
-                    <div className='p-4 border rounded shadow'>
-                        <h2 className='text-center mb-4'>Create an Account</h2>
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group className="mb-3" controlId="formFullName">
-                                <Form.Label>Full Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="fullName"
-                                    required
-                                    value={formData.fullName}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+        <Container className="signup-container">
+            <div className="signup-card">
+                <div className="signup-header">
+                    <h1 className="welcome-title">Welcome to HRDC Karnali</h1>
+                    <p className="welcome-subtitle">Create your account to get started</p>
+                </div>
+                
+                {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+                
+                <Form onSubmit={handleSubmit} className="mt-4">
+                    <Form.Group className="mb-4">
+                        <Form.Label>Full Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="fullName"
+                            required
+                            value={formData.fullName}
+                            onChange={handleChange}
+                            placeholder="Enter your full name"
+                            className="form-input"
+                        />
+                    </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    name="email"
-                                    required
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                    <Form.Group className="mb-4">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                            className="form-input"
+                        />
+                    </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formPhone">
-                                <Form.Label>Phone Number</Form.Label>
-                                <Form.Control
-                                    type="tel"
-                                    name="phone"
-                                    required
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                    <Form.Group className="mb-4">
+                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Control
+                            type="tel"
+                            name="phone"
+                            required
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="Enter your phone number"
+                            className="form-input"
+                        />
+                    </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    required
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                    <Form.Group className="mb-4">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            required
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Create a password"
+                            className="form-input"
+                        />
+                    </Form.Group>
 
-                            <Form.Group className="mb-4" controlId="formConfirmPassword">
-                                <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="confirmPassword"
-                                    required
-                                    value={formData.confirmPassword}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                    <Form.Group className="mb-4">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="confirmPassword"
+                            required
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            placeholder="Confirm your password"
+                            className="form-input"
+                        />
+                    </Form.Group>
 
-                            <div className="d-grid mb-3">
-                                <Button variant="success" type="submit" size="lg">
-                                    Sign Up
-                                </Button>
-                            </div>
-
-                            <div className="text-center">
-                                <p>Already have an account? <a href="/login" className="text-decoration-none">Login</a></p>
-                            </div>
-                        </Form>
+                    <div className="d-grid mb-4">
+                        <Button 
+                            variant="primary"
+                            type="submit" 
+                            size="lg"
+                            disabled={loading}
+                            className="signup-button"
+                        >
+                            {loading ? 'Creating Account...' : 'Sign Up'}
+                        </Button>
                     </div>
-                </Col>
-            </Row>
+
+                    <div className="text-center">
+                        <p className="login-text">
+                            Already have an account?{' '}
+                            <Link to="/login" className="login-link">Login</Link>
+                        </p>
+                    </div>
+                </Form>
+            </div>
         </Container>
     );
 };
 
-export default signup;
+export default Signup;
