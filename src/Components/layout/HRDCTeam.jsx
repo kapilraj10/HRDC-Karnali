@@ -5,7 +5,7 @@ const HRDCTeam = () => {
   const teamMembers = [
     {
       "id": 1,
-      "image": "https://scontent.fktm6-1.fna.fbcdn.net/v/t39.30808-1/450859350_122154560270100414_503596456121750934_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeHr43qYWfx-Nw7VYiCjL7HoctHysEBHf65y0fKwQEd_rgONYzn8UyMDIeVDGF7YTv7SgnWIDVfRrxS7GtoNZaVs&_nc_ohc=Y-JLq4tj81IQ7kNvgEsFuMp&_nc_oc=AdkOsfYMQkoINgOiV6to5kwY5oWvSRQeNdysrSZXWsZGMnSHwnrD8_LHd1bLsCaBdQ0&_nc_zt=24&_nc_ht=scontent.fktm6-1.fna&_nc_gid=8CxJL91vVcmrmAjbMtDQ_Q&oh=00_AYF3eYiAjbckLP1UzI9McUvKus34yelCHEHFTVNU0a8OTg&oe=67F1AB64",
+      "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-png%2Fcartoon-boy&psig=AOvVaw1jA1rLH2nl7iNn_FhifXPl&ust=1744115218852000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDPk9P1xYwDFQAAAAAdAAAAABAE",
       "name": "Homraj KC",
       "role": "Supervisor, HRDC Karnali Province",
       "message": "Dedicated to ensuring smooth operations and high-quality service at HRDC Karnali Province.",
