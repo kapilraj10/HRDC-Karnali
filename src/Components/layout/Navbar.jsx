@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import hospitalLogo from "../../assets/images/hospital-logo.png"
-import "./navbar.css"
+import "./Navbar.css"
 
 const Navbar = () => {
   const location = useLocation()
