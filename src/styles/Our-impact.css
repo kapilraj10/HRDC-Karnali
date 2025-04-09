@@ -1,0 +1,156 @@
+.our-impact {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .impact-hero {
+    background: url('https://hrdcnepal.org/Assets/Images/Gallery/c44c9d58-0dbe-4209-b6fb-ddf41a3da8d9.jpg') center/cover no-repeat;
+    padding: 100px 20px;
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+  
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+  
+  .impact-stats {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .stats-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 40px;
+  }
+  
+  .stat-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-card h3 {
+    font-size: 2rem;
+    margin: 10px 0 5px;
+  }
+  
+  .stat-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .mission-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .impact-stories {
+    background-color: #f0f4f8;
+    padding: 60px 20px;
+  }
+  
+  .stories {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-top: 40px;
+  }
+  
+  .story-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .story-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .story-content {
+    padding: 20px;
+  }
+  
+  .story-content h3 {
+    margin-top: 0;
+  }
+  
+  .story-content ul {
+    padding-left: 20px;
+    margin: 10px 0 0;
+  }
+  
+  .testimonial {
+    background: #e9f5ef;
+    padding: 60px 20px;
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .testimonial cite {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  .support-call {
+    padding: 60px 20px;
+    text-align: center;
+    background: #fff;
+  }
+  
+  .actions {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: #007b5f;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #005c47;
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    color: #007b5f;
+    border: 2px solid #007b5f;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #007b5f;
+    color: white;
+  }
+  

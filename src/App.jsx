@@ -8,7 +8,12 @@ import HRDCTeam from "./Components/layout/HRDCTeam";
 import Gallery from "./Components/layout/Gallery";
 import SuccessStories from "./Components/layout/SuccessStories";
 import HRDCFooter from "./Components/layout/HRDCFooter";
-
+//pages
+import AboutUs from "./Pages/AboutUs";
+import OurImpact from "./Pages/Our-impact";
+import GalleryP from "./Pages/Galleryp";
+import CampaignCenter from "./Pages/CampaignCenter";
+import Notice from "./Pages/Notic";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Sigup";
 
@@ -35,7 +40,11 @@ function App() {
         />
 
 
-       
+<Route path="/about" element={<AboutUs />} /> 
+        <Route path="/impact" element={<OurImpact />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/campaigns-center" element={<CampaignCenter />} />
+        <Route path="/notice" element={<Notice />} />
         {/* Authenticatio routes  */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

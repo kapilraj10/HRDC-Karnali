@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import "../styles/Sinup.css"; // Make sure to create this CSS file
+import "../styles/Sinup.css"; 
 
 const Signup = () => {
     const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Gallery.css';
+import '../styles/Gallery.css';
 
-const Gallery = () => {
+const GalleryP = () => {
   const sampleImages = [
     {
       id: 1,
@@ -70,7 +70,7 @@ const Gallery = () => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!selectedImage) return;
-      
+
       if (e.key === 'Escape') {
         setSelectedImage(null);
       } else if (e.key === 'ArrowRight') {
@@ -91,9 +91,8 @@ const Gallery = () => {
   return (
     <div className="gallery-container">
       <header className="gallery-header">
-        <h1>HRDC Karnali Gallery</h1>
         <p>Moments from our healthcare journey</p>
-        
+
         <div className="filter-buttons">
           {categories.map(category => (
             <button
@@ -109,16 +108,16 @@ const Gallery = () => {
 
       <div className="hrdc-gallery">
         {filteredImages.map((image, index) => (
-          <div 
+          <div
             key={image.id}
             className={`gallery-item ${index === 0 && activeFilter === 'All' ? 'featured' : ''}`}
             onClick={() => setSelectedImage(image)}
             tabIndex="0"
             aria-label={`Image: ${image.caption}`}
-            onKeyPress={(e) => e.key === 'Enter' && setSelectedImage(image)}
+            onKeyDown={(e) => e.key === 'Enter' && setSelectedImage(image)}
           >
-            <img 
-              src={image.url} 
+            <img
+              src={image.url}
               alt={image.caption}
               loading="lazy"
             />
@@ -133,7 +132,7 @@ const Gallery = () => {
       {selectedImage && (
         <div className="image-modal" onClick={() => setSelectedImage(null)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button 
+            <button
               className="modal-close"
               aria-label="Close image"
               onClick={() => setSelectedImage(null)}
@@ -141,7 +140,7 @@ const Gallery = () => {
               &times;
             </button>
             <div className="modal-navigation">
-              <button 
+              <button
                 className="nav-btn prev"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -153,13 +152,13 @@ const Gallery = () => {
               >
                 &#10094;
               </button>
-              
-              <img 
-                src={selectedImage.url} 
+
+              <img
+                src={selectedImage.url}
                 alt={selectedImage.caption}
               />
-              
-              <button 
+
+              <button
                 className="nav-btn next"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -183,4 +182,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default GalleryP;

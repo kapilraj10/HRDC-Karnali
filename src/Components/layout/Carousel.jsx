@@ -7,24 +7,24 @@ const Carousel = () => {
   const carouselItems = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      alt: 'Modern Hospital Facility',
-      caption: 'State-of-the-art Medical Equipment',
-      shortDesc: 'Advanced technology for accurate diagnostics'
+      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80', 
+      alt: 'Healthcare Service',
+      caption: 'Comprehensive Healthcare Services',
+      shortDesc: 'Providing quality healthcare for the community'
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      alt: 'Friendly Medical Staff',
-      caption: 'Caring Healthcare Professionals',
-      shortDesc: 'Experienced doctors and nurses'
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80', 
+      alt: 'Community Support',
+      caption: 'Empowering the Local Community',
+      shortDesc: 'Programs and initiatives for community development'
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      alt: 'Comfortable Patient Room',
-      caption: 'Patient-Centered Care',
-      shortDesc: 'Comfortable recovery environment'
+      image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80', 
+      alt: 'Education Programs',
+      caption: 'Accessible Education for All',
+      shortDesc: 'Building a brighter future through education'
     }
   ];
 

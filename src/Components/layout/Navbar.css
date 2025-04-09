@@ -1,4 +1,6 @@
 :root {
+  --nav-home-color: #ec4899;
+  --nav-about-color: #8b5cf6;
   --nav-impact-color: #06b6d4;
   --nav-gallery-color: #f43f5e;
   --nav-campaign-color: #84cc16;
@@ -8,6 +10,73 @@
   --signup-btn-color: #ec4899;
 }
 
+/* Navbar container styling */
+.navbar {
+  padding: 0.75rem 0;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.hospital-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #333;
+  letter-spacing: -0.5px;
+}
+
+/* Custom navbar toggler */
+.custom-toggler {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.custom-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Navigation links styling */
+.navbar-nav {
+  margin-top: 1rem;
+}
+
+.nav-item {
+  margin: 0 0.25rem;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.75rem 1rem !important;
+  font-weight: 600;
+  color: #333 !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin: 0.15rem 0;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 3px;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Color-specific styles for nav links */
 .nav-link.home::after {
   background: linear-gradient(90deg, var(--nav-home-color), #fb7185);
 }
@@ -28,14 +97,11 @@
   background: linear-gradient(90deg, var(--nav-campaign-color), #bef264);
 }
 
-.nav-link.center::after {
-  background: linear-gradient(90deg, var(--nav-center-color), #7dd3fc);
-}
-
 .nav-link.notice::after {
   background: linear-gradient(90deg, var(--nav-notice-color), #fde047);
 }
 
+/* Hover background effects */
 .nav-link.home:hover {
   background: rgba(236, 72, 153, 0.1);
 }
@@ -56,12 +122,13 @@
   background: rgba(132, 204, 22, 0.1);
 }
 
-.nav-link.center:hover {
-  background: rgba(14, 165, 233, 0.1);
-}
-
 .nav-link.notice:hover {
   background: rgba(234, 179, 8, 0.1);
+}
+
+/* Active state styling */
+.nav-link.active {
+  font-weight: 700;
 }
 
 .nav-link.home.active {
@@ -84,15 +151,20 @@
   box-shadow: 0 0 0 2px rgba(132, 204, 22, 0.2);
 }
 
-.nav-link.center.active {
-  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
-}
-
 .nav-link.notice.active {
   box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2);
 }
+
+/* Auth buttons styling */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
 .login-btn,
 .signup-btn {
+  display: inline-block;
+  text-decoration: none;
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
@@ -101,26 +173,73 @@
   transition: all 0.3s ease;
   cursor: pointer;
   white-space: nowrap;
+  text-align: center;
 }
 
 .login-btn {
   background: var(--login-btn-color);
-  color: white;
+  color: white !important;
 }
 
 .signup-btn {
   background: var(--signup-btn-color);
-  color: white;
+  color: white !important;
 }
 
-/* Mobile Optimizations */
+.login-btn:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.signup-btn:hover {
+  background: #db2777;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.login-btn:active,
+.signup-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (min-width: 992px) {
+  .navbar-nav {
+    margin-top: 0;
+  }
+
+  .nav-item {
+    margin: 0 0.35rem;
+  }
+
+  .navbar-content-wrapper {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-content-wrapper {
+    padding: 1rem 0;
+  }
+
+  .nav-link {
+    padding: 0.75rem 0.5rem !important;
+  }
+
+  .auth-buttons {
+    margin-top: 1rem;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .auth-buttons {
     display: flex;
     gap: 8px;
     width: 100%;
     justify-content: center;
-    margin-top: 10px;
   }
 
   .login-btn,
@@ -128,41 +247,40 @@
     padding: 10px 18px;
     font-size: 0.9rem;
     flex: 1;
-    max-width: 140px; 
+    max-width: 140px;
   }
 }
 
 @media (max-width: 480px) {
   .auth-buttons {
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
     width: 100%;
   }
 
   .login-btn,
   .signup-btn {
-    padding: 10px 14px; 
+    padding: 10px 14px;
     font-size: 0.85rem;
     max-width: 100%;
-    width: 100%; 
+    width: 100%;
+    margin-right: 0 !important;
+  }
+
+  .navbar {
+    padding: 0.5rem 0;
   }
 }
 
-.login-btn:hover {
-  background: #4338ca;
-  transform: translateY(-1px);
-}
+/* Animation for mobile menu */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
 
-.signup-btn:hover {
-  background: #db2777;
-  transform: translateY(-1px);
-}
-
-
-.login-btn:active {
-  transform: translateY(0);
-}
-
-.signup-btn:active {
-  transform: translateY(0);
+  .navbar-collapse.show {
+    max-height: 100vh;
+  }
 }
