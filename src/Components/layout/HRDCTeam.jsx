@@ -5,7 +5,7 @@ const HRDCTeam = () => {
   const teamMembers = [
     {
       "id": 1,
-      "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-png%2Fcartoon-boy&psig=AOvVaw1jA1rLH2nl7iNn_FhifXPl&ust=1744115218852000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDPk9P1xYwDFQAAAAAdAAAAABAE",
+      "image": "https://i.postimg.cc/B6xQb6pg/3d-happy-cartoon-boy-on-transparent-background-generative-ai-png.webp",
       "name": "Homraj KC",
       "role": "Supervisor, HRDC Karnali Province",
       "message": "Dedicated to ensuring smooth operations and high-quality service at HRDC Karnali Province.",
